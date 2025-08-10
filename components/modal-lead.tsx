@@ -32,6 +32,13 @@ const STORAGE_KEY = 'leadData'
 const GREEN = '#7AFF38'
 const GOLD = '#EFC146'
 
+
+declare global {
+  interface Window {
+    fbq: any;
+  }
+}
+
 export function LeadFormModal({
   open = false,
   onOpenChange = () => {},
@@ -81,6 +88,11 @@ export function LeadFormModal({
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    window.fbq("track", "StartTrial", {
+      content_name: "Botón CTA",
+      value: 0,
+      currency: "USD",
+    });
     const v = validate(data)
     setErrors(v)
     if (Object.values(v).some(Boolean)) return

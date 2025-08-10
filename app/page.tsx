@@ -1,59 +1,62 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { Loader2 } from "lucide-react"
-import { LeadFormModal } from "@/components/modal-lead"
+import { useEffect, useState } from "react";
+import { Loader2 } from "lucide-react";
+import { LeadFormModal } from "@/components/modal-lead";
 
 export default function Page() {
-  const [showImages, setShowImages] = useState(false)
-  const [openForm, setOpenForm] = useState(false)
-  const [showButton, setShowButton] = useState(false)
+  const [showImages, setShowImages] = useState(false);
+  const [openForm, setOpenForm] = useState(false);
+  const [showButton, setShowButton] = useState(false);
 
   // Min delay and initial width detection for loading
-  const [isDesktop, setIsDesktop] = useState<boolean | null>(null)
-  const [minDelayDone, setMinDelayDone] = useState(false)
+  const [isDesktop, setIsDesktop] = useState<boolean | null>(null);
+  const [minDelayDone, setMinDelayDone] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowImages(true), 3000)
-    return () => clearTimeout(timer)
-  }, [])
+    const timer = setTimeout(() => setShowImages(true), 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowButton(true), 500)
-    return () => clearTimeout(timer)
-  }, [])
+    const timer = setTimeout(() => setShowButton(true), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleButton = () => {
-    setOpenForm(true)
-  }
+    setOpenForm(true);
+  };
 
   // Detect viewport to toggle between mobile and desktop
   useEffect(() => {
-    const detect = () => setIsDesktop(window.innerWidth >= 1024)
-    detect()
-    const handleResize = () => setIsDesktop(window.innerWidth >= 1024)
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
+    const detect = () => setIsDesktop(window.innerWidth >= 1024);
+    detect();
+    const handleResize = () => setIsDesktop(window.innerWidth >= 1024);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Ensure at least 1000ms loading
   useEffect(() => {
-    const t = setTimeout(() => setMinDelayDone(true), 1000)
-    return () => clearTimeout(t)
-  }, [])
+    const t = setTimeout(() => setMinDelayDone(true), 1000);
+    return () => clearTimeout(t);
+  }, []);
 
-  const ready = isDesktop !== null && minDelayDone
+  const ready = isDesktop !== null && minDelayDone;
 
   // Loading: circular progress centered, black background
   if (!ready) {
     return (
       <main className="relative min-h-screen bg-black grid place-items-center">
         <div className="flex items-center justify-center">
-          <Loader2 className="h-10 w-10 text-white animate-spin" aria-hidden="true" />
+          <Loader2
+            className="h-10 w-10 text-white animate-spin"
+            aria-hidden="true"
+          />
           <span className="sr-only">{"Cargando..."}</span>
         </div>
       </main>
-    )
+    );
   }
 
   // ----------------------------- Desktop Return -----------------------------
@@ -61,7 +64,11 @@ export default function Page() {
     return (
       <main className="relative bg-black min-h-screen">
         {/* Video 1 (Desktop) */}
-        <VideoSectionDesktop src="/background-desktop.mp4" label="Video 1 Desktop" id="d1" />
+        <VideoSectionDesktop
+          src="/background-desktop.mp4"
+          label="Video 1 Desktop"
+          id="d1"
+        />
 
         {/* Logo principal (más grande en desktop) */}
         <img
@@ -75,7 +82,10 @@ export default function Page() {
         {/* Botón CTA (desktop) */}
         <div className="absolute top-[18%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center w-full z-20 cursor-pointer">
           {showButton && !openForm && (
-            <button onClick={handleButton} className="bg-transparent text-black py-2 rounded-md cursor-pointer">
+            <button
+              onClick={handleButton}
+              className="bg-transparent text-black py-2 rounded-md cursor-pointer"
+            >
               <img
                 src="/button.png"
                 alt="Botón principal"
@@ -93,22 +103,42 @@ export default function Page() {
         </section>
 
         {/* Más videos desktop */}
-        <VideoSectionDesktop src="/background-desktop-2.mp4" label="Video 2 Desktop" id="d2" />
-        <VideoSectionDesktop src="/background-desktop-3.mp4" label="Video 3 Desktop" id="d3" />
+        <VideoSectionDesktop
+          src="/background-desktop-2.mp4"
+          label="Video 2 Desktop"
+          id="d2"
+        />
+        <VideoSectionDesktop
+          src="/background-desktop-3.mp4"
+          label="Video 3 Desktop"
+          id="d3"
+        />
         <div className="h-[100px] w-full bg-black"></div>
-        <VideoSectionDesktop src="/background-desktop-4.mp4" label="Video 4 Desktop" id="d4" />
+        <VideoSectionDesktop
+          src="/background-desktop-4.mp4"
+          label="Video 4 Desktop"
+          id="d4"
+        />
 
         {/* Modal Lead */}
-        <LeadFormModal open={openForm} onOpenChange={setOpenForm} baseUrl="https://mooneymaker.co/home?ref=64349" />
+        <LeadFormModal
+          open={openForm}
+          onOpenChange={setOpenForm}
+          baseUrl="https://mooneymaker.co/home?ref=64349"
+        />
       </main>
-    )
+    );
   }
 
   // ----------------------------- Mobile Return -----------------------------
   return (
     <main className="relative bg-black min-h-screen">
       {/* Video 1 */}
-      <VideoSection src="/landing-mobile4.mp4" label="Video 1: Relámpagos y templo" id="1" />
+      <VideoSection
+        src="/landing-mobile4.mp4"
+        label="Video 1: Relámpagos y templo"
+        id="1"
+      />
 
       {/* Imagen base */}
       <img
@@ -135,7 +165,10 @@ export default function Page() {
 
       <div className="absolute top-[38%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center w-full z-20">
         {showButton && !openForm && (
-          <button onClick={handleButton} className="bg-transparent text-black py-2 rounded-md">
+          <button
+            onClick={handleButton}
+            className="bg-transparent text-black py-2 rounded-md"
+          >
             <img
               src="/button.png"
               alt="Logo principal"
@@ -153,11 +186,18 @@ export default function Page() {
       </section>
 
       {/* Video 2 */}
-      <VideoSection src="/background-mobile-2.mp4" label="Video 2: Relámpagos y templo" id="2" />
+      <VideoSection
+        src="/background-mobile-2.mp4"
+        label="Video 2: Relámpagos y templo"
+        id="2"
+      />
 
       <div className="absolute -bottom-0 flex justify-center items-center w-full z-20">
         {showButton && !openForm && (
-          <button onClick={handleButton} className="bg-transparent text-black py-2 rounded-md">
+          <button
+            onClick={handleButton}
+            className="bg-transparent text-black py-2 rounded-md"
+          >
             <img
               src="/button-2.png"
               alt="Logo principal"
@@ -168,11 +208,13 @@ export default function Page() {
           </button>
         )}
       </div>
-      <div className="h-20 bg-black">
-
-      </div>
+      <div className="h-20 bg-black"></div>
       {/* Modal */}
-      <LeadFormModal open={openForm} onOpenChange={setOpenForm} baseUrl="https://mooneymaker.co/home?ref=64349" />
+      <LeadFormModal
+        open={openForm}
+        onOpenChange={setOpenForm}
+        baseUrl="https://mooneymaker.co/home?ref=64349"
+      />
 
       {/* Estilo para giro lento (solo si usas animate-spin-slow) */}
       <style jsx global>{`
@@ -186,7 +228,7 @@ export default function Page() {
         }
       `}</style>
     </main>
-  )
+  );
 }
 
 /* ----------------------------- VideoSection (Mobile-first) ----------------------------- */
@@ -198,36 +240,51 @@ function VideoSection({
   sideFadeWidthDesktop = 240,
   id,
 }: {
-  src?: string
-  label?: string
-  topFadeHeight?: number
-  sideFadeWidthMobile?: number
-  sideFadeWidthDesktop?: number
-  id?: string
+  src?: string;
+  label?: string;
+  topFadeHeight?: number;
+  sideFadeWidthMobile?: number;
+  sideFadeWidthDesktop?: number;
+  id?: string;
 }) {
-  const sideGradientL = "linear-gradient(to right, rgba(0,0,0,1) 50%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0) 100%)"
-  const sideGradientR = "linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0) 100%)"
+  const sideGradientL =
+    "linear-gradient(to right, rgba(0,0,0,1) 50%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0) 100%)";
+  const sideGradientR =
+    "linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0) 100%)";
 
-  const [isDesktop, setIsDesktop] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => setIsDesktop(window.innerWidth >= 1024)
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
+    const handleResize = () => setIsDesktop(window.innerWidth >= 1024);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-  const videoClass = isDesktop ? "w-full h-full object-cover" : "w-auto h-auto max-w-full max-h-full object-contain"
+  const videoClass = isDesktop
+    ? "w-full h-full object-cover"
+    : "w-auto h-auto max-w-full max-h-full object-contain";
   const topGradient = isDesktop
     ? "none"
-    : "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.98) 5%, rgba(0,0,0,0.95) 10%, rgba(0,0,0,0.9) 15%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.8) 25%, rgba(0,0,0,0.75) 30%, rgba(0,0,0,0.7) 35%, rgba(0,0,0,0.65) 40%, rgba(0,0,0,0.6) 45%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.4) 65%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.3) 75%, rgba(0,0,0,0.25) 80%, rgba(0,0,0,0.2) 85%, rgba(0,0,0,0.15) 90%, rgba(0,0,0,0.1) 95%, rgba(0,0,0,0.05) 100%)"
+    : "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.98) 5%, rgba(0,0,0,0.95) 10%, rgba(0,0,0,0.9) 15%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.8) 25%, rgba(0,0,0,0.75) 30%, rgba(0,0,0,0.7) 35%, rgba(0,0,0,0.65) 40%, rgba(0,0,0,0.6) 45%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.4) 65%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.3) 75%, rgba(0,0,0,0.25) 80%, rgba(0,0,0,0.2) 85%, rgba(0,0,0,0.15) 90%, rgba(0,0,0,0.1) 95%, rgba(0,0,0,0.05) 100%)";
 
   return (
     <section className="relative h-[100dvh] overflow-hidden bg-black">
       <div
-        className={`absolute inset-0 flex items-center justify-center ${id === "2" ? "w-full h-full" : "min-w-[95vw]"}`}
+        className={`absolute inset-0 flex items-center justify-center ${
+          id === "2" ? "w-full h-full" : "min-w-[95vw]"
+        }`}
       >
-        <video src={src} className={videoClass} autoPlay muted loop playsInline preload="auto" aria-label={label} />
+        <video
+          src={src}
+          className={videoClass}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-label={label}
+        />
       </div>
 
       {/* Fades grandes */}
@@ -244,7 +301,10 @@ function VideoSection({
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-0 top-0 bottom-0 hidden md:block"
-        style={{ width: `${sideFadeWidthDesktop}px`, background: sideGradientL }}
+        style={{
+          width: `${sideFadeWidthDesktop}px`,
+          background: sideGradientL,
+        }}
       />
       <div
         aria-hidden="true"
@@ -254,10 +314,13 @@ function VideoSection({
       <div
         aria-hidden="true"
         className="pointer-events-none absolute right-0 top-0 bottom-0 hidden md:block"
-        style={{ width: `${sideFadeWidthDesktop}px`, background: sideGradientR }}
+        style={{
+          width: `${sideFadeWidthDesktop}px`,
+          background: sideGradientR,
+        }}
       />
     </section>
-  )
+  );
 }
 
 /* ----------------------------- VideoSectionDesktop ----------------------------- */
@@ -266,28 +329,41 @@ function VideoSectionDesktop({
   label = "Sección de video",
   id,
 }: {
-  src?: string
-  label?: string
-  id?: string
+  src?: string;
+  label?: string;
+  id?: string;
 }) {
-  const [isDesktop, setIsDesktop] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => setIsDesktop(window.innerWidth >= 1024)
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
+    const handleResize = () => setIsDesktop(window.innerWidth >= 1024);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-  const videoClass = isDesktop ? "w-full h-full object-cover" : "w-auto h-auto max-w-full max-h-full object-contain"
+  const videoClass = isDesktop
+    ? "w-full h-full object-cover"
+    : "w-auto h-auto max-w-full max-h-full object-contain";
 
   return (
     <section className="relative h-[100dvh] overflow-hidden bg-black">
       <div
-        className={`absolute inset-0 flex items-center justify-center ${id === "2" ? "w-full h-full" : "min-w-[95vw]"}`}
+        className={`absolute inset-0 flex items-center justify-center ${
+          id === "2" ? "w-full h-full" : "min-w-[95vw]"
+        }`}
       >
-        <video src={src} className={videoClass} autoPlay muted loop playsInline preload="auto" aria-label={label} />
+        <video
+          src={src}
+          className={videoClass}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-label={label}
+        />
       </div>
     </section>
-  )
+  );
 }
