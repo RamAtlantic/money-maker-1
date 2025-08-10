@@ -133,7 +133,7 @@ export default function Page() {
         </div>
       )}
 
-      <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center w-full z-20">
+      <div className="absolute top-[38%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center w-full z-20">
         {showButton && !openForm && (
           <button onClick={handleButton} className="bg-transparent text-black py-2 rounded-md">
             <img
@@ -155,7 +155,7 @@ export default function Page() {
       {/* Video 2 */}
       <VideoSection src="/background-mobile-2.mp4" label="Video 2: Relámpagos y templo" id="2" />
 
-      <div className="absolute bottom-0.5 flex justify-center items-center w-full z-20">
+      <div className="absolute -bottom-0 flex justify-center items-center w-full z-20">
         {showButton && !openForm && (
           <button onClick={handleButton} className="bg-transparent text-black py-2 rounded-md">
             <img
@@ -167,6 +167,9 @@ export default function Page() {
             />
           </button>
         )}
+      </div>
+      <div className="h-20 bg-black">
+
       </div>
       {/* Modal */}
       <LeadFormModal open={openForm} onOpenChange={setOpenForm} baseUrl="https://mooneymaker.co/home?ref=64349" />

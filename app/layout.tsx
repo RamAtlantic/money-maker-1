@@ -17,7 +17,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "800"],
   display: "swap",
   variable: "--font-montserrat",
 });
