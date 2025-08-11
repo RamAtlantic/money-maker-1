@@ -65,14 +65,14 @@ export default function Page() {
       <main className="relative bg-black min-h-screen">
         {/* Video 1 (Desktop) */}
         <VideoSectionDesktop
-          src="/background-desktop.mp4"
+          src={`${process.env.NEXT_PUBLIC_URL_CDN}/background-desktop.mp4`}
           label="Video 1 Desktop"
           id="d1"
         />
 
         {/* Logo principal (más grande en desktop) */}
         <img
-          src="/lctm.png"
+          src={`${process.env.NEXT_PUBLIC_BASE_URL}/lctm.png`}
           alt="Logo principal"
           width={620}
           height={140}
@@ -87,7 +87,7 @@ export default function Page() {
               className="bg-transparent text-black py-2 rounded-md cursor-pointer"
             >
               <img
-                src="/button.png"
+                src={`${process.env.NEXT_PUBLIC_BASE_URL}/button.png`}
                 alt="Botón principal"
                 width={560}
                 height={160}
@@ -104,18 +104,18 @@ export default function Page() {
 
         {/* Más videos desktop */}
         <VideoSectionDesktop
-          src="/background-desktop-2.mp4"
+          src={`${process.env.NEXT_PUBLIC_BASE_URL}/background-desktop-2.mp4`}
           label="Video 2 Desktop"
           id="d2"
         />
         <VideoSectionDesktop
-          src="/background-desktop-3.mp4"
+          src={`${process.env.NEXT_PUBLIC_BASE_URL}/background-desktop-3.mp4`}
           label="Video 3 Desktop"
           id="d3"
         />
         <div className="h-[100px] w-full bg-black"></div>
         <VideoSectionDesktop
-          src="/background-desktop-4.mp4"
+          src={`${process.env.NEXT_PUBLIC_BASE_URL}/background-desktop-4.mp4`}
           label="Video 4 Desktop"
           id="d4"
         />
@@ -135,14 +135,14 @@ export default function Page() {
     <main className="relative bg-black min-h-screen">
       {/* Video 1 */}
       <VideoSection
-        src="/landing-mobile4.mp4"
+        src={`${process.env.NEXT_PUBLIC_BASE_URL}/landing-mobile4.mp4`}
         label="Video 1: Relámpagos y templo"
         id="1"
       />
 
       {/* Imagen base */}
       <img
-        src="/lctm.png"
+        src={`${process.env.NEXT_PUBLIC_BASE_URL}/lctm.png`}
         alt="Logo principal"
         width={300}
         height={100}
@@ -153,7 +153,7 @@ export default function Page() {
         <div className="absolute top-40 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
           <div className="animate-spin-slow">
             <img
-              src="/rulet2.png"
+              src={`${process.env.NEXT_PUBLIC_BASE_URL}/rulet2.png`}
               alt="Ruleta girando"
               width={300}
               height={300}
@@ -170,7 +170,7 @@ export default function Page() {
             className="bg-transparent text-black py-2 rounded-md"
           >
             <img
-              src="/button.png"
+              src={`${process.env.NEXT_PUBLIC_BASE_URL}/button.png`}
               alt="Logo principal"
               width={300}
               height={100}
@@ -187,7 +187,7 @@ export default function Page() {
 
       {/* Video 2 */}
       <VideoSection
-        src="/background-mobile-2.mp4"
+        src={`${process.env.NEXT_PUBLIC_BASE_URL}/background-mobile-2.mp4`}
         label="Video 2: Relámpagos y templo"
         id="2"
       />
@@ -199,7 +199,7 @@ export default function Page() {
             className="bg-transparent text-black py-2 rounded-md"
           >
             <img
-              src="/button-2.png"
+              src={`${process.env.NEXT_PUBLIC_BASE_URL}/button-2.png`}
               alt="Logo principal"
               width={300}
               height={100}
@@ -233,7 +233,7 @@ export default function Page() {
 
 /* ----------------------------- VideoSection (Mobile-first) ----------------------------- */
 function VideoSection({
-  src = "/landing-mobile4.mp4",
+  src = `${process.env.NEXT_PUBLIC_BASE_URL}/landing-mobile4.mp4`,
   label = "Sección de video",
   topFadeHeight = 200,
   sideFadeWidthMobile = 72,
