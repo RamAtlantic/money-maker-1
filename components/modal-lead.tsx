@@ -129,7 +129,7 @@ export function LeadFormModal({
       <DialogContent
         className={cn(
           // Remove default bg/border to allow custom neon frame
-          'sm:max-w-[440px] border-none bg-transparent p-0 mt-12',
+          'sm:max-w-[440px] border-none bg-transparent p-0 mt-6',
           className
         )}
       >
