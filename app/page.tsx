@@ -230,27 +230,7 @@ function DesktopBanner() {
   return (
     <header className="fixed top-0 left-0 w-full bg-gradient-to-b from-black via-black/90 to-transparent text-white py-4 px-8 flex justify-between items-center z-50 backdrop-blur-sm">
       <div className="flex items-center space-x-6">
-        <div className="text-xl font-bold tracking-wider">LCTM</div>
-        <nav className="hidden md:flex space-x-8">
-          <a
-            href="#inicio"
-            className="hover:text-yellow-400 transition-colors duration-300 text-sm uppercase tracking-wide"
-          >
-            Inicio
-          </a>
-          <a
-            href="#experiencia"
-            className="hover:text-yellow-400 transition-colors duration-300 text-sm uppercase tracking-wide"
-          >
-            Experiencia
-          </a>
-          <a
-            href="#contacto"
-            className="hover:text-yellow-400 transition-colors duration-300 text-sm uppercase tracking-wide"
-          >
-            Contacto
-          </a>
-        </nav>
+        
       </div>
 
       <div className="flex items-center space-x-4">
