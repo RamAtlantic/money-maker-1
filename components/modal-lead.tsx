@@ -44,7 +44,7 @@ declare global {
 export function LeadFormModal({
   open = false,
   onOpenChange = () => {},
-  baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://mooneymaker.co/home?ref=64349',
+  baseUrl = process.env.NEXT_PUBLIC_BASE_URL,
   className,
 }: LeadFormModalProps) {
   const [data, setData] = React.useState<LeadData>({
